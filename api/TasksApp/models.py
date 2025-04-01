@@ -8,7 +8,11 @@ class Task(models.Model):
     create_date = models.DateTimeField(auto_now=True)
     update_date = models.DateTimeField(auto_now=True)
     due_date = models.DateTimeField()
-    status = models.CharField(default='Open')
+    status = models.CharField(
+        max_length=20,
+        choices=[("O", "Open"), ("P", "Pending"), ("C", "Completed"), ("IP", "In Progress")],
+        default="Open"
+    )
 
 
     def __str__(self):
