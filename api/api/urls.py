@@ -17,7 +17,23 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
+from UsersApp.views import RegisterUserView, RegisterUserProfile
+
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from rest_framework import permissions
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="InterviewCrusher",
+        default_version='v1',),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('api/registeruser/', RegisterUserView.as_view(), name='registeruser'),
+    path('api/createprofile/', RegisterUserProfile.as_view(), name='createprofile'),
+    path('docs/', schema_view.with_ui('swagger', cache_timeout=0),name='schema-swagger-ui'),
 ]
