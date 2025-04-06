@@ -18,6 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from UsersApp.views import RegisterUserView, RegisterUserProfile
+from TasksApp.views import RegisterTask
 
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
@@ -35,5 +36,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('api/registeruser/', RegisterUserView.as_view(), name='registeruser'),
     path('api/createprofile/', RegisterUserProfile.as_view(), name='createprofile'),
+    path('api/createtask/', RegisterTask.as_view(), name='createtask'),
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0),name='schema-swagger-ui'),
 ]

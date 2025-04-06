@@ -1,4 +1,5 @@
 from django.db import models
+from rest_framework import serializers
 
 # Create your models here.
 class Task(models.Model):
@@ -17,3 +18,15 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class CreateTask(serializers.Serializer):
+    category = serializers.CharField()
+    title = serializers.CharField()
+    description = serializers.CharField()
+    create_date = serializers.DateField()
+    update_date = serializers.DateField()
+    due_date = serializers.DateField()
+    status = serializers.CharField()
+
+    

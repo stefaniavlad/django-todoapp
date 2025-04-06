@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import User, Profile, CreateUserRequest, CreateUserProfile
 from django.contrib.auth.hashers import make_password
@@ -26,7 +25,7 @@ class RegisterUserProfile(APIView):
     @swagger_auto_schema(request_body=CreateUserProfile)
     def post(self, request):
         role = request.data.get('role')
-        marcel = request.data.get('marcel')
-        profile = Profile.objects.create(role=role, user_id=marcel)
+        user = request.data.get('marcel')
+        profile = Profile.objects.create(role=role, user_id=user)
 
         return Response("Profile created")
