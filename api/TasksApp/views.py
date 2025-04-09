@@ -19,3 +19,4 @@ class RegisterTask(APIView):
                                    due_date=due_date, status=status)
 
         return Response("Task created")
+# Story points in functie de dificultate signals

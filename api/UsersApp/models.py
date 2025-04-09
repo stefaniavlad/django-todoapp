@@ -6,11 +6,11 @@ from rest_framework import serializers
 
 class Profile(models.Model):
     # image = models.CharField(blank=True, null=True)
-    role = models.CharField(max_length=50, choices=[
-        ("SM", "Scrum Master"), ("TL", "Team Lead"), ("D", "Developer"), ("QA", "Quality Assurance"), ("V", "View Only")], 
-        default='V')
+    # role = models.CharField(max_length=50, choices=[
+    #     ("SM", "Scrum Master"), ("TL", "Team Lead"), ("D", "Developer"), ("QA", "Quality Assurance"), ("V", "View Only")], 
+    #     default='V')
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    
+    email = models.EmailField(default='@email.com')
 
     def __str__(self):
         return self.user.username
