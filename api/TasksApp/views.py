@@ -20,3 +20,4 @@ class RegisterTask(APIView):
 
         return Response("Task created")
 # Story points in functie de dificultate signals
+# Services
