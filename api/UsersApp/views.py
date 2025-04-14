@@ -4,7 +4,7 @@ from .models import User, Profile, CreateUserRequest, CreateUserProfile
 from django.contrib.auth.hashers import make_password
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.decorators import APIView
-from .services.user_service import create_user
+from .services.user_service import create_user, create_user_profile
 # Create your views here.
 
 class RegisterUserView(APIView):
@@ -23,8 +23,9 @@ class RegisterUserView(APIView):
 class RegisterUserProfile(APIView):
     @swagger_auto_schema(request_body=CreateUserProfile)
     def post(self, request):
-        role = request.data.get('role')
-        user = request.data.get('user')
-        profile = Profile.objects.create(role=role, user_id=user)
-
-        return Response("Profile created")
+        profile = create_user_profile(
+            role=request.data.get('role'), 
+            user_id=request.data.get('user'), 
+            email=request.data.get('email')
+            )
+        return Response(f"Profile {profile} created")

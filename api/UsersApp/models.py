@@ -25,4 +25,5 @@ class CreateUserRequest(serializers.Serializer):
 
 class CreateUserProfile(serializers.Serializer):
     role = serializers.CharField()
-    marcel = serializers.CharField()
+    user = serializers.CharField()
+    email = serializers.EmailField()

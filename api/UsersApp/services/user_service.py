@@ -1,6 +1,6 @@
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
-from .models import User, Profile, CreateUserRequest, CreateUserProfile
+from ..models import User, Profile
 
 
 @staticmethod
@@ -14,3 +14,9 @@ def create_user(first_name, last_name, username, password, email):
         password=hash_password
     )
     return user
+
+
+@staticmethod
+def create_user_profile(role, user, email):
+    profile = Profile.objects.create(role=role, user=user, email=email)
+    return profile
