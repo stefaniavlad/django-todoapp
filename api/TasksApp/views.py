@@ -5,24 +5,6 @@ from drf_yasg.utils import swagger_auto_schema
 from rest_framework.decorators import APIView
 from .services.task_service import create_task
 
-# Create your views here.
-# class RegisterTask(APIView):
-#     @swagger_auto_schema(request_body=CreateTask)
-#     def post(self, request):
-#         category = request.data.get('category')
-#         title = request.data.get('title')
-#         description = request.data.get('description')
-#         create_date = request.data.get('create_date')
-#         update_date = request.data.get('update_date')
-#         due_date = request.data.get('due_date')
-#         status = request.data.get('status')
-#         task = Task.objects.create(category=category, title=title, description=description, create_date=create_date, update_date=update_date,
-#                                    due_date=due_date, status=status)
-
-#         return Response("Task created")
-# Story points in functie de dificultate signals
-# Services
-
 class RegisterTask(APIView):
     @swagger_auto_schema(request_body=CreateTask)
     def post(self, request):

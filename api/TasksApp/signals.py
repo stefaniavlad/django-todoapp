@@ -21,20 +21,20 @@ def delete_task(sender, instance, **kwargs):
     task = instance.title
     task.delete()
 
-@receiver(pre_save, sender=Task)
-def set_task_difficulty(sender, instance, **kwargs):
-    if instance.due_date and instance.create_date:
-        delta = instance.due_date - instance.create_date
-        days = delta.days
+# @receiver(pre_save, sender=Task)
+# def set_task_difficulty(sender, instance, **kwargs):
+#     if instance.due_date and instance.create_date:
+#         delta = instance.due_date - instance.create_date
+#         days = delta.days
 
-        if days <= 1:
-            instance.difficulty = 1
-        elif days <= 3:
-            instance.difficulty = 2
-        elif days <= 5:
-            instance.difficulty = 3
-        elif days <= 10:
-            instance.difficulty = 4
-        else:
-            instance.difficulty = 5
+#         if days <= 1:
+#             instance.difficulty = 1
+#         elif days <= 3:
+#             instance.difficulty = 2
+#         elif days <= 5:
+#             instance.difficulty = 3
+#         elif days <= 10:
+#             instance.difficulty = 4
+#         else:
+#             instance.difficulty = 5
 
