@@ -23,6 +23,10 @@ from TasksApp.views import RegisterTask
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework import permissions
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -38,4 +42,7 @@ urlpatterns = [
     path('api/createprofile/', RegisterUserProfile.as_view(), name='createprofile'),
     path('api/createtask/', RegisterTask.as_view(), name='createtask'),
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0),name='schema-swagger-ui'),
+    path('api/refresh/', TokenRefreshView.as_view(), name='TokenRefreshView'),
+    path('api/login/', TokenObtainPairView.as_view(), name='TokenObtainPairView'),
+    
 ]

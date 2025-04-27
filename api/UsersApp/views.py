@@ -4,8 +4,20 @@ from .models import User, Profile, CreateUserRequest, CreateUserProfile
 from django.contrib.auth.hashers import make_password
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.decorators import APIView
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 from .services.user_service import UserService
 # Create your views here.
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(clas, user):
+        token = super().get_token(user)
+        return token
+    
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
+
 
 class RegisterUserView(APIView):
     @swagger_auto_schema(request_body=CreateUserRequest)
