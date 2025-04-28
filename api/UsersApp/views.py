@@ -13,6 +13,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(clas, user):
         token = super().get_token(user)
+        profile = Profile.objects.get(user=user)
+        token['role'] = profile.role
         return token
     
 class MyTokenObtainPairView(TokenObtainPairView):
